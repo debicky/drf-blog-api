@@ -9,6 +9,11 @@ class Category(models.Model):
         return self.name
 
 class Post(models.Model):
+    class PostObject(models.Manager):
+        def get_queryset(self):
+            return super().get_queryset().filter(status= 'published')
+
+
     options = (
         ('draft', 'Draft'),
         ('published', 'Published'),
@@ -25,7 +30,11 @@ class Post(models.Model):
         User, on_delete=models.CASCADE, related_name='blog_posts'
     )
     status = models.CharField(max_length=10, choices=options, default='published')
+    objects = models.Manager()
+    postobject = PostObject()
 
+    class Meta:
+        ordering = ('-published',)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.title
