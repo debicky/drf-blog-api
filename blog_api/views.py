@@ -4,7 +4,7 @@ from blog.models import Post
 from .serializers import PostSerializer
 
 class PostList(generics.ListCreateAPIView):
-    queryset = Post.postobjects.all()
+    queryset = Post.postobject.all()
     serializer_class = PostSerializer
     pass 
 
