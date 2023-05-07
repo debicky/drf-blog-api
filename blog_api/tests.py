@@ -8,13 +8,15 @@ class PostTests(APITestCase):
     def test_view_posts(self):
         url = reverse('blog_api:listcreate')
         response = self.client.get(url, format='json')
-
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_create_post(self):
         self.test_category = Category.objects.create(name='django')
-        self.testuser1 = User.objects.create_user(
+        self.testuser1 = User.objects.create_superuser(
           username='test_user1', password='123456789'
+        )
+        self.client.login(
+            username=self.testuser1.username, password='123456789'
         )
         post_data = {
             'title': 'Post title', 
