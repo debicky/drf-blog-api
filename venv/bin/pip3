@@ -1,4 +1,4 @@
-#!/home/debicky/Documents/PythonProjects/DRF/venv/bin/python3
+#!/Users/arturdebicki/PythonProjects/drf-blog/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
